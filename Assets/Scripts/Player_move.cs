@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
       bool canmove = true;
       bool ishitarea = false;
       float h;
-      bool github = false;
+      bool githubing;
       float v;
       // Start is called once before the first execution of Update after the MonoBehaviour is created
       void Start()
