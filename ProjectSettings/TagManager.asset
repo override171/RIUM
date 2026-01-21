@@ -7,7 +7,7 @@ TagManager:
   - NonG
   - Ground
   - Default
-  - Spike
+  - Obstacle
   layers:
   - Default
   - TransparentFX

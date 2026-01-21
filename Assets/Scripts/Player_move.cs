@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
       void Update()
       {
-            Vector2 rayOrigin = (Vector2)transform.position + (Vector2)transform.up * 1f;
+            Vector2 rayOrigin = (Vector2)transform.position + (Vector2)transform.up * 0.8f;
             Debug.DrawRay(rayOrigin, transform.up * 0.3f, Color.green);
             RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, transform.up, 0.5f, mask);
             if(hit2.collider != null)
