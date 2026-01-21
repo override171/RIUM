@@ -50,11 +50,11 @@ public class Player : MonoBehaviour
             {
                   if(h > 0)
                   {
-                        h = 1;
+                        h = 0.8f;
                   }
                   else if(h < 0)
                   {
-                        h = -1;
+                        h = -0.8f;
                   }
                   v = -1;
             }
