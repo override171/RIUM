@@ -20,7 +20,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             check = GameObject.Find("Player").GetComponent<Player>().hit;
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                  Debug.Log("remove");
+                  //Debug.Log("remove");
                   box.excludeLayers = 1 << 3;
                   Invoke("rebuild", 0.5f);
             }

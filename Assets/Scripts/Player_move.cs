@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
       public GameObject hitobj;
       LayerMask mask = 8;
       public GameObject hit;
+      public int hitH = 0;
+      Vector2 stPos;
       public float moveSpeed;
       public bool isfloat = false;
       bool canmove = true;
@@ -95,6 +97,7 @@ public class Player : MonoBehaviour
       }
       private void OnTriggerEnter2D(Collider2D collision)
       {
+            hitH = 0;
             if (collision.gameObject.tag != "Ground")
             {
                   hit = collision.gameObject;
@@ -111,17 +114,18 @@ public class Player : MonoBehaviour
       }
       private void OnTriggerStay2D(Collider2D collision)
       {
+            Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 5f);
+            foreach (Collider2D col2 in col)
+            {
+                  if(col2.gameObject.tag == "Ground" || col2.gameObject.tag == "NonG")
+                  {
+                        canmove = true;
+                  }
+            }
+       
             if (collision.gameObject.tag != "Ground")
             {
                   hit = collision.gameObject;
-            }
-            if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NonG")
-            {
-                  canmove = true;
-            }
-            else
-            {
-                  canmove = false;
             }
       }
 }

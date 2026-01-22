@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Default
   - Obstacle
+  - Flag
   layers:
   - Default
   - TransparentFX
