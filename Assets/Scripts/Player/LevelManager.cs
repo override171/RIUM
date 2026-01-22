@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+      GameObject player;
       public GameObject[] levels;
       Vector2 stPos;
       public int lv = 0;
@@ -11,6 +12,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
             stPos = new Vector2(-5, -1);
+            player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -35,10 +37,12 @@ public class LevelManager : MonoBehaviour
             }
             if (i == 1)
             {
+                  player.GetComponent<Player_useG>().haveG = false;
                   levels[lv].gameObject.SetActive(false);
                   lv++;
                   levels[lv].gameObject.SetActive(true);
                   transform.position = stPos;
+                  i = 0;
             }
       }
 }

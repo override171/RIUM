@@ -5,7 +5,7 @@ public class Player_useG : MonoBehaviour
       public bool inNong = false;
       public GameObject hitarea;
       GameObject hita;
-      bool haveG = false;
+      public bool haveG = false;
       public GameObject h;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
