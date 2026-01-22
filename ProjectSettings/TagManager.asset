@@ -9,6 +9,9 @@ TagManager:
   - Default
   - Obstacle
   - Flag
+  - Locked
+  - Key
+  - Door
   layers:
   - Default
   - TransparentFX
