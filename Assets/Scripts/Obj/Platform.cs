@@ -29,8 +29,10 @@ public class Platform : MonoBehaviour
       {
             if (collision != null)
             {
+                  Debug.Log("contact");
                   speed = 0; //layer override on
-                  spder.flipX = true;
+                  spder.flipX = !spder.flipX;
+                  isOn = false;
             }
       }
 }
