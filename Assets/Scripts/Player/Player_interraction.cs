@@ -29,5 +29,9 @@ public class Player_interraction : MonoBehaviour
                   door[0].SetActive(false);
                   door[1].SetActive(false);
             }
+            if (collision.gameObject.tag == "Obstacle")
+            {
+                  Debug.Log("damaged");
+            }
       }
 }
