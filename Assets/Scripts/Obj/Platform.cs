@@ -27,7 +27,7 @@ public class Platform : MonoBehaviour
       }
       private void OnTriggerEnter2D(Collider2D collision)
       {
-            if (collision != null)
+            if (collision.gameObject.layer == 12)
             {
                   Debug.Log("contact");//layer override on
                   isOn = false;

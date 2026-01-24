@@ -23,7 +23,7 @@ public class ShapedArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            Debug.Log(i);
+           // Debug.Log(i);
             if(areas[0].gameObject.tag != a0)
             {
                   master = areas[0].gameObject.tag;
