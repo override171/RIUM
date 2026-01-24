@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-      public float speed = 5;
+      public float speed = 100;
       public bool isOn = false;
       SpriteRenderer spder;
       Rigidbody2D rigid;
@@ -29,10 +29,10 @@ public class Platform : MonoBehaviour
       {
             if (collision != null)
             {
-                  Debug.Log("contact");
-                  speed = 0; //layer override on
-                  spder.flipX = !spder.flipX;
+                  Debug.Log("contact");//layer override on
                   isOn = false;
+                  speed = speed * -1;
+                  return;
             }
       }
 }

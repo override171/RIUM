@@ -5,6 +5,7 @@ public class Lever_platform : MonoBehaviour
       public GameObject platform;
       GameObject plat;
       public float moveSp;
+      bool canLever = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +16,14 @@ public class Lever_platform : MonoBehaviour
     void Update()
     {
         moveSp = plat.GetComponent<Platform>().speed;
+            if (canLever)
+            {
+                  if (Input.GetKeyDown(KeyCode.Q))
+                  {
+                        plat.GetComponent<Platform>().isOn = true;
+                        Debug.Log("Lever On");
+                  }
+            }
     }
       private void OnTriggerEnter2D(Collider2D collision)
       {
@@ -24,11 +33,11 @@ public class Lever_platform : MonoBehaviour
       {
             if (collision.gameObject.tag == "Player")
             {
-                  if (Input.GetKeyDown(KeyCode.Q))
-                  {
-                        plat.GetComponent<Platform>().isOn = true;
-                        Debug.Log("Lever On");
-                  }
+                  canLever = true;
+            }
+            else
+            {
+                  canLever = false;
             }
       }
 }
