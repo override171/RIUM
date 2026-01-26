@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-      public float speed = 100;
+      public float speed;
       public bool isOn = false;
       public bool wallhit = true;
       SpriteRenderer spder;
