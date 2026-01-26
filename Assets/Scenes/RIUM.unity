@@ -10592,7 +10592,7 @@ GameObject:
   - component: {fileID: 616090119}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10613,7 +10613,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 12287
+    m_Bits: 8191
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -10673,7 +10673,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 12287
+    m_Bits: 8191
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -10725,7 +10725,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 28671
+    m_Bits: 24575
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -10796,12 +10796,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616090118}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.75, y: 0.07, z: -1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.46, y: -0.15, z: -1}
   m_LocalScale: {x: 2.3493, y: 0.5473, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 853575542}
+  m_Father: {fileID: 1751805611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &622393901
 GameObject:
@@ -14199,7 +14199,7 @@ GameObject:
   - component: {fileID: 768545632}
   - component: {fileID: 768545631}
   - component: {fileID: 768545630}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16182,8 +16182,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 616090124}
+  m_Children: []
   m_Father: {fileID: 1751805611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &864234484
@@ -30497,7 +30496,7 @@ Transform:
   m_GameObject: {fileID: 1583093970}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.98, y: 3.1304, z: -1}
+  m_LocalPosition: {x: 3.96, y: 3.1304, z: -1}
   m_LocalScale: {x: 0.24899559, y: 5.4881496, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30746,7 +30745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1584787621}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Boundary (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33064,6 +33063,7 @@ Transform:
   - {fileID: 1502807511}
   - {fileID: 1849862522}
   - {fileID: 853575542}
+  - {fileID: 616090124}
   - {fileID: 105481184}
   - {fileID: 768545629}
   - {fileID: 1786576500}
@@ -33299,7 +33299,7 @@ GameObject:
   - component: {fileID: 1764913235}
   - component: {fileID: 1764913234}
   - component: {fileID: 1764913233}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: boundary (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34048,7 +34048,7 @@ GameObject:
   - component: {fileID: 1786576503}
   - component: {fileID: 1786576502}
   - component: {fileID: 1786576501}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

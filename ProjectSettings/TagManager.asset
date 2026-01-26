@@ -12,6 +12,7 @@ TagManager:
   - Locked
   - Key
   - Door
+  - Platform
   layers:
   - Default
   - TransparentFX
