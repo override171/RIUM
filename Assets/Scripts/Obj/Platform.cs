@@ -4,6 +4,7 @@ public class Platform : MonoBehaviour
 {
       public float speed = 100;
       public bool isOn = false;
+      public bool wallhit = true;
       SpriteRenderer spder;
       Rigidbody2D rigid;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,7 +34,20 @@ public class Platform : MonoBehaviour
                   Debug.Log("contact");//layer override on
                   isOn = false;
                   speed = speed * -1;
-                  return;
+            }
+      }
+      private void OnTriggerStay2D(Collider2D collision)
+      {
+            if(collision.gameObject.layer == 13)
+            {
+                  wallhit = true;
+            }
+      }
+      private void OnTriggerExit2D(Collider2D collision)
+      {
+            if (collision.gameObject.layer == 13)
+            {
+                  wallhit = false;
             }
       }
 }

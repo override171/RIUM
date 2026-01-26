@@ -30,8 +30,15 @@ public class Player : MonoBehaviour
             RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, transform.up, 0.5f, mask);
             if(hit2.collider != null)
             {
-                  hitobj = hit2.collider.gameObject;
-                  ishitarea = true;
+                  if(hit2.collider.gameObject.GetComponent<lockdGArea>() != null)
+                  {
+                        hitobj = null;
+                  }
+                  else
+                  {
+                        hitobj = hit2.collider.gameObject;
+                        ishitarea = true;
+                  }
             }
 
             if (  hit == null || hit.tag != "NonG" || hit == null)

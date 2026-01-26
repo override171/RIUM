@@ -16,10 +16,17 @@ public class Player_useG : MonoBehaviour
       // Update is called once per frame
       void Update()
       {
-            hita = h.GetComponent<Player>().hitobj;
-            //Debug.Log(hita.tag);
-            //Debug.Log(haveG);
-            use();
+            if(h.GetComponent<Player>().hitobj != null)
+            {
+                  hita = h.GetComponent<Player>().hitobj;   
+            }
+            else
+            {
+                  return;
+            }
+                  //Debug.Log(hita.tag);
+                  //Debug.Log(haveG);
+                  use();
             if (hitarea == null || hitarea.tag != "NonG")
             {
                   inNong = false;
