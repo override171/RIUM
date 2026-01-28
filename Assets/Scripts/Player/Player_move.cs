@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
       // Start is called once before the first execution of Update after the MonoBehaviour is created
       void Start()
       {
-          rigid = GetComponent<Rigidbody2D>();
+            rigid = GetComponent<Rigidbody2D>();
             mask = ~LayerMask.GetMask("Player", "Default");
             anim = GetComponent<Animator>();    
       }
@@ -46,11 +46,15 @@ public class Player : MonoBehaviour
 
             if (  hit == null || hit.tag != "NonG" || hit == null)
             {
+                  rigid.gravityScale = 2;
                   isfloat = false;
+                  anim.SetBool("inNonG", false);
             }
             else if (hit.tag == "NonG")
             {
+                  rigid.gravityScale = 0;
                   isfloat = true;
+                  anim.SetBool("inNonG", true);
             }
 
             if (canmove)
@@ -58,7 +62,7 @@ public class Player : MonoBehaviour
                   h = Input.GetAxisRaw("Horizontal");
                   v = Input.GetAxisRaw("Vertical");
 
-                  if (h != 0)
+                  if (h != 0 )
                   {
                         transform.localScale = new Vector3(Mathf.Sign(h), 1, 1);
                         anim.SetBool("isWalk", true);
@@ -85,7 +89,7 @@ public class Player : MonoBehaviour
                   v = -1;
             }
       }
-
+          
       void FixedUpdate()
       {
             move();
@@ -94,7 +98,15 @@ public class Player : MonoBehaviour
       {
              if (isfloat == true)
              {
-                  rigid.linearVelocity = new Vector2(h * moveSpeed, v * moveSpeed);
+                        rigid.linearVelocity = new Vector2(h * moveSpeed , v * moveSpeed);
+                  if (h != 0 || v != 0)
+                  {
+                        anim.SetBool("isSwim", true);
+                  }
+                  else
+                  {
+                        anim.SetBool("isSwim", false);
+                  }
                   if(h < 0)
                   {
                         transform.rotation = Quaternion.Euler(0f, 0f, 90f);

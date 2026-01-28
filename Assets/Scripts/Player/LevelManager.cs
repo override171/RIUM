@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-            stPos = new Vector2(-5, -1);
+            stPos = new Vector3(-5, -1, -2);
             player = GameObject.Find("Player");
     }
 
