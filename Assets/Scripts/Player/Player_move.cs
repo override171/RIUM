@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+      public BoxCollider2D[] box;
       Rigidbody2D rigid;
+      Animator anim;
       public GameObject hitobj;
       LayerMask mask = 8;
       public GameObject hit;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
       {
           rigid = GetComponent<Rigidbody2D>();
             mask = ~LayerMask.GetMask("Player", "Default");
+            anim = GetComponent<Animator>();    
       }
 
       void Update()
@@ -54,6 +57,20 @@ public class Player : MonoBehaviour
             {
                   h = Input.GetAxisRaw("Horizontal");
                   v = Input.GetAxisRaw("Vertical");
+
+                  if (h != 0)
+                  {
+                        transform.localScale = new Vector3(Mathf.Sign(h), 1, 1);
+                        anim.SetBool("isWalk", true);
+                        box[0].enabled = false;
+                        box[1].enabled = true;
+                  }
+                  else
+                  {
+                        anim.SetBool("isWalk", false);
+                        box[0].enabled = true;
+                        box[1].enabled = false;
+                  }
             }
             else
             {
