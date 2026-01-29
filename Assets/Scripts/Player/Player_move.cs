@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
                         {
                               transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
                         }
-                        else
+                        else 
                         {
                               Debug.Log("over");
                               rotateSpeed = 0;
