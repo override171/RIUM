@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
       bool canmove = true;
       bool ishitarea = false;
       float h;
+      public float rotateSpeed;
       // please work
       float v;
       // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -104,35 +105,82 @@ public class Player : MonoBehaviour
       {
              if (isfloat == true)
              {
-                        rigid.linearVelocity = new Vector2(h * moveSpeed , v * moveSpeed);
+                  moveSpeed = 2.5f;
+                  rigid.linearVelocity = new Vector2(h * moveSpeed , v * moveSpeed);
                   if (h != 0 || v != 0)
                   {
                         anim.SetBool("isSwim", true);
                   }
                   else
                   {
-                        anim.SetBool("isSwim", false);
+                        float z = transform.eulerAngles.z;
+                        if (z > 180f) z -= 360f;
+
+                        if(z > 1)
+                        {
+                              rotateSpeed = -180f;
+                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                              if(z == 0)
+                              {
+                                    rotateSpeed = 0;
+                              }
+                        }
+                        else if(z < -1)
+                        {
+                              rotateSpeed = 180f;
+                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                              if (z == 0)
+                              {
+                                    rotateSpeed = 0;
+                              }
+                        }
+                              anim.SetBool("isSwim", false);
                   }
                   if (h < 0)
                   {
-                        transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                        rotateSpeed = 180f;
+                        float z = transform.eulerAngles.z;
+                        if (z > 180f) z -= 360f;
+
+                        if (z < 90f)
+                        {
+                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                        }
+                        else
+                        {
+                              Debug.Log("over");
+                              rotateSpeed = 0;
+                        }
                   }
                   else if (h > 0)
                   {
-                        transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                        rotateSpeed = -180f;
+                        float z = transform.eulerAngles.z;
+                        if (z > 180f) z -= 360f;
+
+                        if (z > -90f)
+                        {
+                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                        }
+                        else
+                        {
+                              Debug.Log("over");
+                              rotateSpeed = 0;
+                        }
                   }
-                  if(v >0)
+                  if (v >0)
                   {
-                        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                        transform.rotation = Quaternion.Euler(0, 0, 0);
                   }
                   else if(v < 0)
                   {
-                        transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                        transform.rotation = Quaternion.Euler(0, 0, 180);
                   }
              }
             else if(isfloat == false)
              {
                   //Debug.Log("out");
+                  moveSpeed = 5;
                   transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                   rigid.linearVelocity = new Vector2(h * moveSpeed, rigid.linearVelocityY);
                   anim.SetBool("isSwim", false);
