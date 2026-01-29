@@ -28,7 +28,15 @@ public class Player : MonoBehaviour
 
       void Update()
       {
-            Vector2 rayOrigin = (Vector2)transform.position + (Vector2)transform.up * 1.2f;
+            if (isfloat)
+            {
+                  anim.SetBool("inNonG", true);
+            }
+            else
+            {
+                  anim.SetBool("inNonG", false);
+            }
+                  Vector2 rayOrigin = (Vector2)transform.position + (Vector2)transform.up * 1.2f;
             Debug.DrawRay(rayOrigin, transform.up * 0.3f, Color.green);
             RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, transform.up, 0.5f, mask);
             if(hit2.collider != null)
@@ -48,13 +56,11 @@ public class Player : MonoBehaviour
             {
                   rigid.gravityScale = 2;
                   isfloat = false;
-                  anim.SetBool("inNonG", false);
             }
             else if (hit.tag == "NonG")
             {
                   rigid.gravityScale = 0;
                   isfloat = true;
-                  anim.SetBool("inNonG", true);
             }
 
             if (canmove)
@@ -62,7 +68,7 @@ public class Player : MonoBehaviour
                   h = Input.GetAxisRaw("Horizontal");
                   v = Input.GetAxisRaw("Vertical");
 
-                  if (h != 0 )
+                  if (h != 0 && isfloat == false )
                   {
                         transform.localScale = new Vector3(Mathf.Sign(h), 1, 1);
                         anim.SetBool("isWalk", true);
@@ -107,11 +113,11 @@ public class Player : MonoBehaviour
                   {
                         anim.SetBool("isSwim", false);
                   }
-                  if(h < 0)
+                  if (h < 0)
                   {
                         transform.rotation = Quaternion.Euler(0f, 0f, 90f);
                   }
-                  else if(h > 0)
+                  else if (h > 0)
                   {
                         transform.rotation = Quaternion.Euler(0f, 0f, -90f);
                   }
@@ -129,7 +135,8 @@ public class Player : MonoBehaviour
                   //Debug.Log("out");
                   transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                   rigid.linearVelocity = new Vector2(h * moveSpeed, rigid.linearVelocityY);
-             }
+                  anim.SetBool("isSwim", false);
+            }
       }
       private void OnTriggerEnter2D(Collider2D collision)
       {

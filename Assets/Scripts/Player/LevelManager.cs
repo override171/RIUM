@@ -5,13 +5,11 @@ public class LevelManager : MonoBehaviour
 {
       GameObject player;
       public GameObject[] levels;
-      Vector2 stPos;
       public int lv = 0;
       int i = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-            stPos = new Vector3(-5, -1, -2);
             player = GameObject.Find("Player");
     }
 
@@ -41,7 +39,11 @@ public class LevelManager : MonoBehaviour
                   levels[lv].gameObject.SetActive(false);
                   lv++;
                   levels[lv].gameObject.SetActive(true);
-                  transform.position = stPos;
+                  Vector3 pos = transform.position;
+                  pos.z = -2;
+                  pos.x = -5;
+                  pos.y = -1;
+                  transform.position = pos;
                   i = 0;
             }
       }
