@@ -6,6 +6,7 @@ public class CamTest : MonoBehaviour
 {
       public CinemachineCamera cam;
       public GameObject player;
+      bool exit = false;
       CinemachinePositionComposer framing;
 
       void Start()
@@ -16,6 +17,10 @@ public class CamTest : MonoBehaviour
       void Update()
       {
             transform.position = player.transform.position;
+            if (exit)
+            {
+                  SetScreenPos(0, 0.2f);
+            }
       }
 
       void SetScreenPos(float x, float y)
@@ -28,14 +33,15 @@ public class CamTest : MonoBehaviour
             if (collision.gameObject.tag == "Camline")
             {
                   Debug.Log("enter");
-                  SetScreenPos(0, -0.4f);
+                  SetScreenPos(0, -0.3f);
+                  exit = false;
             }
       }
       private void OnTriggerExit2D(Collider2D collision)
       {
             if(collision.gameObject.tag == "Camline")
             {
-                  SetScreenPos(0, 0);
+                  exit = true;
             }
       }
 }
