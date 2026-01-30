@@ -164,7 +164,7 @@ public class Player : MonoBehaviour
                         }
                         else
                         {
-                              Debug.Log("over");
+                              //Debug.Log("over");
                               rotateSpeed = 0;
                         }
                   }

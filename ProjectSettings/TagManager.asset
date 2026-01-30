@@ -13,6 +13,9 @@ TagManager:
   - Key
   - Door
   - Platform
+  - Cutscene
+  - Camline
+  - CamCol
   layers:
   - Default
   - TransparentFX
