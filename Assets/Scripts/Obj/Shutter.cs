@@ -20,7 +20,7 @@ public class Shutter : MonoBehaviour
             {
                   shutter.SetActive(true);
             }
-            else
+            else if(collision.gameObject.tag == "Default")
             {
                   shutter.SetActive(false);
             }

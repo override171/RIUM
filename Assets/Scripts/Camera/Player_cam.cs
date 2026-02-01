@@ -19,7 +19,7 @@ public class CamTest : MonoBehaviour
             transform.position = player.transform.position;
             if (exit)
             {
-                  SetScreenPos(0, 0.2f);
+                  SetScreenPos(0, 0.15f);
             }
       }
 
