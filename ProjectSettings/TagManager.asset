@@ -16,6 +16,7 @@ TagManager:
   - Cutscene
   - Camline
   - CamCol
+  - cut
   layers:
   - Default
   - TransparentFX

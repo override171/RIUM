@@ -6,6 +6,7 @@ public class ShapedArea : MonoBehaviour
 {
       public GameObject[] areas;
       public SpriteRenderer[] spder;
+      public GameObject[] areaLights;
       public string a = "Default";
       string a0;
       string a1;
@@ -51,6 +52,8 @@ public class ShapedArea : MonoBehaviour
                   foreach(var sp in spder)
                   {
                         sp.color = Color.lightBlue;
+                        areaLights[0].SetActive(true);
+                        areaLights[1].SetActive(true);
                   }
             }
             else if(master == "Default")
@@ -58,6 +61,8 @@ public class ShapedArea : MonoBehaviour
                   foreach (var sp in spder)
                   {
                         sp.color = Color.white;
+                        areaLights[0].SetActive(false);
+                        areaLights[1].SetActive(false);
                   }
             }
             a0 = master;
