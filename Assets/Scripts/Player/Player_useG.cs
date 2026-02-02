@@ -47,7 +47,9 @@ public class Player_useG : MonoBehaviour
                               //aaDebug.Log("whit washing");
                               hita.tag = "Default";
                               SpriteRenderer render = hita.GetComponent<SpriteRenderer>();
-                              render.color = Color.white;
+                              Color setColor;
+                              ColorUtility.TryParseHtmlString("#89D3DA", out setColor);
+                              render.color = setColor;      
                               haveG = true;
                               return;
                         }
