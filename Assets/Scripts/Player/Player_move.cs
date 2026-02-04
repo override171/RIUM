@@ -103,7 +103,11 @@ public class Player : MonoBehaviour
       }
       void move()
       {
-             if (isfloat == true)
+            if(h == 0 && v == 0)
+            {
+                  rotateSpeed = 0;
+            }
+                  if (isfloat == true)
              {
                   moveSpeed = 2.5f;
                   rigid.linearVelocity = new Vector2(h * moveSpeed , v * moveSpeed);
@@ -118,7 +122,7 @@ public class Player : MonoBehaviour
 
                         if(z > 1)
                         {
-                              rotateSpeed = -180f;
+                              rotateSpeed = -280f;
                               transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
                               if(z == 0)
                               {
@@ -127,7 +131,7 @@ public class Player : MonoBehaviour
                         }
                         else if(z < -1)
                         {
-                              rotateSpeed = 180f;
+                              rotateSpeed = 280f;
                               transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
                               if (z == 0)
                               {
@@ -138,7 +142,7 @@ public class Player : MonoBehaviour
                   }
                   if (h < 0)
                   {
-                        rotateSpeed = 180f;
+                        rotateSpeed = 280f;
                         float z = transform.eulerAngles.z;
                         if (z > 180f) z -= 360f;
 
@@ -154,7 +158,7 @@ public class Player : MonoBehaviour
                   }
                   else if (h > 0)
                   {
-                        rotateSpeed = -180f;
+                        rotateSpeed = -280f;
                         float z = transform.eulerAngles.z;
                         if (z > 180f) z -= 360f;
 
