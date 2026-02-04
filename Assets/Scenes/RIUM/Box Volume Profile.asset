@@ -80,7 +80,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.136
+    m_Value: 0.178
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,10 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
   m_Name: PaniniProjection
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.PaniniProjection
-  active: 0
+  active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.364
+    m_Value: 0.29
   cropToFit:
     m_OverrideState: 1
     m_Value: 0.195
@@ -201,7 +201,7 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: -12
+    m_Value: -33
   tint:
     m_OverrideState: 1
     m_Value: -57
@@ -226,7 +226,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.234
+    m_Value: 0.225
   smoothness:
     m_OverrideState: 1
     m_Value: 0.358
@@ -248,7 +248,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.33
+    m_Value: 0.3
   xMultiplier:
     m_OverrideState: 1
     m_Value: 0.642
@@ -323,7 +323,7 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.9153329, y: 0.94410425, z: 1, w: 0}
+    m_Value: {x: 0.9037116, y: 0.948372, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.9576509, z: 0.84883344, w: 0}
