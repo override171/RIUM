@@ -6723,7 +6723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: umm@anima2d::Anima2D.Bone2D
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.29123065
+  m_Length: 0.2912309
   m_ChildTransform: {fileID: 1622240895}
   m_AttachedIK: {fileID: 241795817}
 --- !u!1 &133177692
@@ -85732,7 +85732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1623289136
 Transform:
   m_ObjectHideFlags: 0
@@ -93579,7 +93579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1751805611
 Transform:
   m_ObjectHideFlags: 0
