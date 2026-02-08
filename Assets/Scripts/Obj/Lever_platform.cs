@@ -39,11 +39,18 @@ public class Lever_platform : MonoBehaviour
                   }
             }
     }
-      private void OnTriggerEnter2D(Collider2D collision)
+      private void OnCollisionStay2D(Collision2D collision)
       {
-  
+            if(collision.gameObject.tag == "Player")
+            {
+                  canLever = true;
+            }
+            else
+            {
+                  canLever = false;
+            }
       }
-      private void OnTriggerStay2D(Collider2D collision)
+      /*private void OnTriggerStay2D(Collider2D collision)
       {
             if (collision.gameObject.tag == "Player")
             {
@@ -53,5 +60,5 @@ public class Lever_platform : MonoBehaviour
             {
                   canLever = false;
             }
-      }
+      }*/
 }
