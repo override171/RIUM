@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
       Vector2 stPos;
       public float moveSpeed;
       public bool isfloat = false;
+      public bool isEnd = false;
       bool canmove = true;
       bool ishitarea = false;
       float h;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
 
       void Update()
       {
+            isEnd = GameObject.Find("Player").GetComponent<LevelManager>().moveOff;
             if (isfloat)
             {
                   anim.SetBool("inNonG", true);
@@ -63,39 +65,43 @@ public class Player : MonoBehaviour
                   rigid.gravityScale = 0;
                   isfloat = true;
             }
-
-            if (canmove)
+            if(!isEnd)
             {
-                  h = Input.GetAxisRaw("Horizontal");
-                  v = Input.GetAxisRaw("Vertical");
-
-                  if (h != 0 && isfloat == false )
+                  if (canmove)
                   {
-                        transform.localScale = new Vector3(Mathf.Sign(h), 1, 1);
-                        anim.SetBool("isWalk", true);
-                        box[0].enabled = false;
-                        box[1].enabled = true;
+                        h = Input.GetAxisRaw("Horizontal");
+                        v = Input.GetAxisRaw("Vertical");
+
+                        if (h != 0 && isfloat == false)
+                        {
+                              transform.localScale = new Vector3(Mathf.Sign(h), 1, 1);
+                              anim.SetBool("isWalk", true);
+                              box[0].enabled = false;
+                              box[1].enabled = true;
+                        }
+                        else
+                        {
+                              anim.SetBool("isWalk", false);
+                              box[0].enabled = true;
+                              box[1].enabled = false;
+                        }
                   }
                   else
                   {
-                        anim.SetBool("isWalk", false);
-                        box[0].enabled = true;
-                        box[1].enabled = false;
+                        if (h > 0)
+                        {
+                              h = 0.8f;
+                        }
+                        else if (h < 0)
+                        {
+                              h = -0.8f;
+                        }
+                        v = -1;
                   }
-            }
-            else
-            {
-                  if(h > 0)
-                  {
-                        h = 0.8f;
-                  }
-                  else if(h < 0)
-                  {
-                        h = -0.8f;
-                  }
-                  v = -1;
             }
       }
+
+         
           
       void FixedUpdate()
       {
@@ -104,92 +110,96 @@ public class Player : MonoBehaviour
       }
       void move()
       {
-            if(h == 0 && v == 0)
+            if (!isEnd)
             {
-                  rotateSpeed = 0;
-            }
+                  if (h == 0 && v == 0)
+                  {
+                        rotateSpeed = 0;
+                  }
                   if (isfloat == true)
-             {
-                  moveSpeed = 2.5f;
-                  rigid.linearVelocity = new Vector2(h * moveSpeed , v * moveSpeed);
-                  if (h != 0 || v != 0)
                   {
-                        anim.SetBool("isSwim", true);
-                  }
-                  else
-                  {
-                        float z = transform.eulerAngles.z;
-                        if (z > 180f) z -= 360f;
-
-                        if(z > 1)
+                        moveSpeed = 2.5f;
+                        rigid.linearVelocity = new Vector2(h * moveSpeed, v * moveSpeed);
+                        if (h != 0 || v != 0)
                         {
-                              rotateSpeed = -320f;
-                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-                              if(z == 0)
-                              {
-                                    rotateSpeed = 0;
-                              }
-                        }
-                        else if(z < -1)
-                        {
-                              rotateSpeed = 320f;
-                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-                              if (z == 0)
-                              {
-                                    rotateSpeed = 0;
-                              }
-                        }
-                              anim.SetBool("isSwim", false);
-                  }
-                  if (h < 0)
-                  {
-                        rotateSpeed = 320f;
-                        float z = transform.eulerAngles.z;
-                        if (z > 180f) z -= 360f;
-
-                        if (z < 90f)
-                        {
-                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-                        }
-                        else 
-                        {
-                              Debug.Log("over");
-                              rotateSpeed = 0;
-                        }
-                  }
-                  else if (h > 0)
-                  {
-                        rotateSpeed = -320f;
-                        float z = transform.eulerAngles.z;
-                        if (z > 180f) z -= 360f;
-
-                        if (z > -90f)
-                        {
-                              transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                              anim.SetBool("isSwim", true);
                         }
                         else
                         {
-                              //Debug.Log("over");
-                              rotateSpeed = 0;
+                              float z = transform.eulerAngles.z;
+                              if (z > 180f) z -= 360f;
+
+                              if (z > 1)
+                              {
+                                    rotateSpeed = -320f;
+                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                                    if (z == 0)
+                                    {
+                                          rotateSpeed = 0;
+                                    }
+                              }
+                              else if (z < -1)
+                              {
+                                    rotateSpeed = 320f;
+                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                                    if (z == 0)
+                                    {
+                                          rotateSpeed = 0;
+                                    }
+                              }
+                              anim.SetBool("isSwim", false);
+                        }
+                        if (h < 0)
+                        {
+                              rotateSpeed = 320f;
+                              float z = transform.eulerAngles.z;
+                              if (z > 180f) z -= 360f;
+
+                              if (z < 90f)
+                              {
+                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                              }
+                              else
+                              {
+                                    Debug.Log("over");
+                                    rotateSpeed = 0;
+                              }
+                        }
+                        else if (h > 0)
+                        {
+                              rotateSpeed = -320f;
+                              float z = transform.eulerAngles.z;
+                              if (z > 180f) z -= 360f;
+
+                              if (z > -90f)
+                              {
+                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+                              }
+                              else
+                              {
+                                    //Debug.Log("over");
+                                    rotateSpeed = 0;
+                              }
+                        }
+                        if (v > 0)
+                        {
+                              transform.rotation = Quaternion.Euler(0, 0, 0);
+                        }
+                        else if (v < 0)
+                        {
+                              transform.rotation = Quaternion.Euler(0, 0, 180);
                         }
                   }
-                  if (v >0)
+                  else if (isfloat == false)
                   {
-                        transform.rotation = Quaternion.Euler(0, 0, 0);
+                        //Debug.Log("out");
+                        moveSpeed = 5;
+                        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                        rigid.linearVelocity = new Vector2(h * moveSpeed, rigid.linearVelocityY);
+                        anim.SetBool("isSwim", false);
                   }
-                  else if(v < 0)
-                  {
-                        transform.rotation = Quaternion.Euler(0, 0, 180);
-                  }
-             }
-            else if(isfloat == false)
-             {
-                  //Debug.Log("out");
-                  moveSpeed = 5;
-                  transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                  rigid.linearVelocity = new Vector2(h * moveSpeed, rigid.linearVelocityY);
-                  anim.SetBool("isSwim", false);
             }
+            
       }
       private void OnTriggerEnter2D(Collider2D collision)
       {

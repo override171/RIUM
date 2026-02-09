@@ -22,13 +22,13 @@ public class UXinterface : MonoBehaviour
             {
                   tutotext[uiNum].SetActive(true);
                   collobj = collision.gameObject;
-                  collobj.SetActive(false);
                   Invoke("Dest", 3f);
             }
       }
       void Dest()
       {
             CancelInvoke();
+            collobj.SetActive(false);
             tutotext[uiNum].SetActive(false);
             uiNum++;
       }
