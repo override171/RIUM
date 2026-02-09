@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
       void FixedUpdate()
       {
             move();
-            Debug.Log(rotateSpeed);
+            //Debug.Log(rotateSpeed);
       }
       void move()
       {

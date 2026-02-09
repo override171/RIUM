@@ -5,7 +5,11 @@ using UnityEngine.InputSystem;
 public class LevelManager : MonoBehaviour
 {
       GameObject player;
+      public AudioClip swichsoud;
+      public AudioClip noise;
+      AudioSource audioSource;
       public bool moveOff = false;
+      bool bgm = true;
       public GameObject[] levels;
       public GameObject Fade;
       public Animator anim;
@@ -17,11 +21,19 @@ public class LevelManager : MonoBehaviour
     {
             player = GameObject.Find("Player");
             anim = GetComponent<Animator>();
-    }
+            audioSource = gameObject.AddComponent<AudioSource>();
+      }
 
     // Update is called once per frame
     void Update()
     {
+            if (bgm)
+            {
+                  if(!audioSource.isPlaying)
+                  {
+                        audioSource.PlayOneShot(noise);
+                  }
+            }
             if(lv == 5)
             {
                   Invoke("moveoff", 5f);
@@ -31,12 +43,14 @@ public class LevelManager : MonoBehaviour
       void moveoff()
       {
             rb.bodyType = RigidbodyType2D.Static;
-            //anim.CrossFade("Idle_NonG", 0.1f);
             anim.SetBool("isWalk", false);
             moveOff = true;
       }
       void fade()
       {
+            CancelInvoke("fade");
+             audioSource.PlayOneShot(swichsoud);
+             bgm = false;
             Fade.SetActive(true);
       }
       private void OnCollisionEnter2D(Collision2D collision)
