@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
       void FixedUpdate()
       {
             move();
+            Debug.Log(rotateSpeed);
       }
       void move()
       {
@@ -122,7 +123,7 @@ public class Player : MonoBehaviour
 
                         if(z > 1)
                         {
-                              rotateSpeed = -280f;
+                              rotateSpeed = -320f;
                               transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
                               if(z == 0)
                               {
@@ -131,7 +132,7 @@ public class Player : MonoBehaviour
                         }
                         else if(z < -1)
                         {
-                              rotateSpeed = 280f;
+                              rotateSpeed = 320f;
                               transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
                               if (z == 0)
                               {
@@ -142,7 +143,7 @@ public class Player : MonoBehaviour
                   }
                   if (h < 0)
                   {
-                        rotateSpeed = 280f;
+                        rotateSpeed = 320f;
                         float z = transform.eulerAngles.z;
                         if (z > 180f) z -= 360f;
 
@@ -158,7 +159,7 @@ public class Player : MonoBehaviour
                   }
                   else if (h > 0)
                   {
-                        rotateSpeed = -280f;
+                        rotateSpeed = -320f;
                         float z = transform.eulerAngles.z;
                         if (z > 180f) z -= 360f;
 

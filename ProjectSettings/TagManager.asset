@@ -17,6 +17,7 @@ TagManager:
   - Camline
   - CamCol
   - cut
+  - tuto
   layers:
   - Default
   - TransparentFX
