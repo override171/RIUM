@@ -34,7 +34,11 @@ public class LevelManager : MonoBehaviour
                         audioSource.PlayOneShot(noise);
                   }
             }
-            if(lv == 5)
+            else
+            {
+                         audioSource.Stop();
+            }
+            if (lv == 5)
             {
                   Invoke("moveoff", 5f);
                   Invoke("fade", 12f);
