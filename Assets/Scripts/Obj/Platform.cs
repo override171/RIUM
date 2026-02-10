@@ -31,6 +31,7 @@ public class Platform : MonoBehaviour
             Debug.Log(collision.gameObject.layer);
             if (collision.gameObject.layer == 13)
             {
+                  wallhit = true;
                   Debug.Log("contact");//layer override on
                   isOn = false;
                   speed = speed * -1;

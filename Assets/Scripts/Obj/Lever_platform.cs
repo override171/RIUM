@@ -28,13 +28,12 @@ public class Lever_platform : MonoBehaviour
                   {
                         if (Input.GetKeyDown(KeyCode.Q))
                         {
-                              if (platformcont)
-                              {
+
                                     degree = -1 * degree;
                                     plat.GetComponent<Platform>().isOn = true;
                                     Debug.Log("Lever On");
                                     lever.transform.rotation = Quaternion.Euler(0, 0, degree);
-                              }
+
                         }
                   }
             }
@@ -44,11 +43,16 @@ public class Lever_platform : MonoBehaviour
             if(collision.gameObject.tag == "Player")
             {
                   canLever = true;
+                  Debug.Log("can lever");
             }
-            else
-            {
-                  canLever = false;
-            }
+      }
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+                if (collision.gameObject.tag == "Player")
+                {
+                    canLever = false;
+                    Debug.Log("cant lever");
+                }
       }
       /*private void OnTriggerStay2D(Collider2D collision)
       {

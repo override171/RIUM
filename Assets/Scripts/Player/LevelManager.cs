@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -47,8 +48,10 @@ public class LevelManager : MonoBehaviour
                   {
                         ending.PlayOneShot(EndingBGM);
                   }
+                  player.GetComponent<Player>().isfloat = false;
                   Invoke("moveoff", 5f);
-                  Invoke("fade", 12f);
+                  Invoke("fade", 15f);
+                  StartCoroutine(endingbgm());
             }
     }
       void moveoff()
@@ -71,6 +74,18 @@ public class LevelManager : MonoBehaviour
                   i++;
                   Invoke("LvUp", 0f);
             }
+      }
+      IEnumerator endingbgm()
+      {
+            float t = 0f;
+            while (t < 5f)
+            {
+                  t += Time.deltaTime;
+                  ending.volume = Mathf.Lerp(0f, 0.4f, t / 5);
+                  yield return null;
+            }
+
+            ending.volume = 0.4f;
       }
       void LvUp()
       {
