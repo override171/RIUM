@@ -66,6 +66,11 @@ public class LevelManager : MonoBehaviour
              switchs.PlayOneShot(swichsoud);
              bgm = false;
             Fade.SetActive(true);
+            Invoke("switchoff", 2f);
+      }
+      void switchoff()
+      {
+            switchs.enabled = false;
       }
       private void OnCollisionEnter2D(Collision2D collision)
       {

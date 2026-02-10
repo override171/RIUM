@@ -32,7 +32,7 @@ public class CamTest : MonoBehaviour
       {
             if (collision.gameObject.tag == "Camline")
             {
-                  Debug.Log("enter");
+                  //Debug.Log("enter");
                   SetScreenPos(0, -0.3f);
                   exit = false;
             }
