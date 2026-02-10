@@ -58,6 +58,8 @@ public class BGMPlayer : MonoBehaviour
                   yield return null;
             }
             src.volume = 0f;
+            bgmSource[0].enabled = false;
+            bgmSource[1].enabled = false;
       }
 
       IEnumerator FadeIn(AudioSource src)
