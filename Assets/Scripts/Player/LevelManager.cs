@@ -2,6 +2,7 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class LevelManager : MonoBehaviour
       public AudioSource switchs;
       public bool moveOff = false;
       bool bgm = true;
+      bool fadeEnd = false;
       public GameObject[] levels;
-      public GameObject Fade;
+      public Image Fade;
+      public GameObject fadeObj;
       public Animator anim;
       public Rigidbody2D rb;
       public int lv = 0;
@@ -65,7 +68,7 @@ public class LevelManager : MonoBehaviour
             CancelInvoke("fade");
              switchs.PlayOneShot(swichsoud);
              bgm = false;
-            Fade.SetActive(true);
+            fadeObj.SetActive(true);
             Invoke("switchoff", 2f);
       }
       void switchoff()
@@ -76,9 +79,35 @@ public class LevelManager : MonoBehaviour
       {
             if(collision.gameObject.tag == "Flag")
             {
+                  StartCoroutine(fadein());
                   i++;
-                  Invoke("LvUp", 0f);
             }
+      }
+      IEnumerator fadein()
+      {
+            float t = 0f;
+            Fade.enabled = true;
+            while (t < 1f)
+            {
+                  t += Time.deltaTime;
+                  Fade.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 1f, t / 1f));
+                  yield return null;
+            }
+            Fade.color = new Color(0f, 0f, 0f, 1f);
+            Invoke("LvUp", 0f);
+            StartCoroutine(fadeout());
+      }
+      IEnumerator fadeout() { 
+         float t = 0f;
+            while (t < 1f)
+            {
+                  t += Time.deltaTime;
+                  Fade.color = new Color(0f, 0f, 0f, Mathf.Lerp(1f, 0f, t / 1f));
+                  yield return null;
+            }
+            Fade.color = new Color(0f, 0f, 0f, 0f);
+            Fade.enabled = false;
+            fadeEnd = true;
       }
       IEnumerator endingbgm()
       {
@@ -99,7 +128,7 @@ public class LevelManager : MonoBehaviour
             {
                   return;
             }
-            if (i == 1)
+            if (i == 1 )
             {
                   player.GetComponent<Player_useG>().haveG = false;
                   levels[lv].gameObject.SetActive(false);
@@ -111,6 +140,7 @@ public class LevelManager : MonoBehaviour
                   pos.y = -1;
                   transform.position = pos;
                   i = 0;
+                  fadeEnd = false;
             }
       }
 }
