@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
       void Update()
       {
             isEnd = GameObject.Find("Player").GetComponent<LevelManager>().moveOff;
+     
             if (isfloat)
             {
                   anim.SetBool("inNonG", true);
@@ -161,7 +162,7 @@ public class Player : MonoBehaviour
                               }
                               else
                               {
-                                    Debug.Log("over");
+                                    //Debug.Log("over");
                                     rotateSpeed = 0;
                               }
                         }
@@ -204,10 +205,7 @@ public class Player : MonoBehaviour
       private void OnTriggerEnter2D(Collider2D collision)
       {
             hitH = 0;
-            if (collision.gameObject.tag != "Ground")
-            {
-                  hit = collision.gameObject;
-            }
+
       }
       private void OnTriggerExit2D(Collider2D collision)
       {
@@ -228,7 +226,11 @@ public class Player : MonoBehaviour
                         canmove = true;
                   }
             }
-       
+            if (collision.gameObject.tag != "Ground")
+            {
+                  hit = collision.gameObject;
+            }
+
             if (collision.gameObject.tag != "Ground")
             {
                   hit = collision.gameObject;

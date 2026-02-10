@@ -33,8 +33,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
       }
       private void OnCollisionEnter2D(Collision2D collision)
       {
-            if(check != null)
+            if (check != null)
             {
+                  Debug.Log(check.tag);
                   if (check.tag == "Default")
                   {
                         Debug.Log("remove");
@@ -45,11 +46,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
       }
       private void OnCollisionStay2D(Collision2D collision)
       {
-                  if (check == null || check.tag == "Default")
+            if(check != null)
+            {
+                  if (check.tag == "Default")
                   {
+                        Debug.Log("remove1");
                         box.excludeLayers = 1 << 3;
-                        Invoke("rebuild", 2f);
+                        Invoke("rebuild", 0.8f);
                   }
+            }
             if (collision.gameObject.tag == "Player")
             {
                   inG = true;
