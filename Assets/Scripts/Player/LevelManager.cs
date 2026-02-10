@@ -7,7 +7,10 @@ public class LevelManager : MonoBehaviour
       GameObject player;
       public AudioClip swichsoud;
       public AudioClip noise;
+      public AudioClip EndingBGM;
       AudioSource audioSource;
+      public AudioSource ending;
+      public AudioSource switchs;
       public bool moveOff = false;
       bool bgm = true;
       public GameObject[] levels;
@@ -40,6 +43,10 @@ public class LevelManager : MonoBehaviour
             }
             if (lv == 5)
             {
+                  if(ending.isPlaying == false)
+                  {
+                        ending.PlayOneShot(EndingBGM);
+                  }
                   Invoke("moveoff", 5f);
                   Invoke("fade", 12f);
             }
@@ -53,7 +60,7 @@ public class LevelManager : MonoBehaviour
       void fade()
       {
             CancelInvoke("fade");
-             audioSource.PlayOneShot(swichsoud);
+             switchs.PlayOneShot(swichsoud);
              bgm = false;
             Fade.SetActive(true);
       }
