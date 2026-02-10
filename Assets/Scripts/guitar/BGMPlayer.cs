@@ -9,14 +9,15 @@ public class BGMPlayer : MonoBehaviour
       // Start is called once before the first execution of Update after the MonoBehaviour is created
       void Start()
     {
-        InvokeRepeating("PlayBGM", 0f, 60f);
+
+            InvokeRepeating("PlayBGM", 30f, 60f);
             player = GameObject.Find("Player");
       }
 
     // Update is called once per frame
     void Update()
     {
-            if(player.GetComponent<LevelManager>().lv >= 1)
+            if(player.GetComponent<LevelManager>().lv == 1)
             {
                   bgmplay = true;
             }
