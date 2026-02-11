@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
                   }
             }
 
-            if (  hit == null || hit.tag != "NonG" || hit == null)
+            if (  hit == null || hit.tag != "NonG" || hit.tag == "Ground")
             {
                   rigid.gravityScale = 2;
                   isfloat = false;
@@ -113,94 +113,60 @@ public class Player : MonoBehaviour
       {
             if (!isEnd)
             {
-                  if (h == 0 && v == 0)
-                  {
-                        rotateSpeed = 0;
-                  }
-                  if (isfloat == true)
+                  // 1. 물속에 있을 때 (수영)
+                  if (isfloat)
                   {
                         moveSpeed = 2.5f;
                         rigid.linearVelocity = new Vector2(h * moveSpeed, v * moveSpeed);
-                        if (h != 0 || v != 0)
-                        {
-                              anim.SetBool("isSwim", true);
-                        }
-                        else
-                        {
-                              float z = transform.eulerAngles.z;
-                              if (z > 180f) z -= 360f;
 
-                              if (z > 1)
-                              {
-                                    rotateSpeed = -320f;
-                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-                                    if (z == 0)
-                                    {
-                                          rotateSpeed = 0;
-                                    }
-                              }
-                              else if (z < -1)
-                              {
-                                    rotateSpeed = 320f;
-                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-                                    if (z == 0)
-                                    {
-                                          rotateSpeed = 0;
-                                    }
-                              }
-                              anim.SetBool("isSwim", false);
-                        }
-                        if (h < 0)
-                        {
-                              rotateSpeed = 320f;
-                              float z = transform.eulerAngles.z;
-                              if (z > 180f) z -= 360f;
+                        bool hasInput = h != 0 || v != 0;
+                        anim.SetBool("isSwim", hasInput);
 
-                              if (z < 90f)
-                              {
-                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-                              }
-                              else
-                              {
-                                    //Debug.Log("over");
-                                    rotateSpeed = 0;
-                              }
+                        // 회전 목표 각도 설정
+                        float targetZ = 0f; // 기본값 (입력이 없거나 위로 갈 때 0도)
+
+                        // 입력에 따른 우선순위 로직 (원래 코드의 의도를 반영하여 정리)
+                        if (v < 0)
+                        {
+                              targetZ = 180f; // 아래로 갈 때
+                        }
+                        else if (v > 0)
+                        {
+                              targetZ = 0f;   // 위로 갈 때
                         }
                         else if (h > 0)
                         {
-                              rotateSpeed = -320f;
-                              float z = transform.eulerAngles.z;
-                              if (z > 180f) z -= 360f;
+                              targetZ = -90f; // 오른쪽으로 갈 때 (-90도)
+                        }
+                        else if (h < 0)
+                        {
+                              targetZ = 90f;  // 왼쪽으로 갈 때 (90도)
+                        }
+                        else
+                        {
+                              targetZ = 0f;   // 입력이 없을 때 원래대로 복귀
+                        }
 
-                              if (z > -90f)
-                              {
-                                    transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-                              }
-                              else
-                              {
-                                    //Debug.Log("over");
-                                    rotateSpeed = 0;
-                              }
-                        }
-                        if (v > 0)
-                        {
-                              transform.rotation = Quaternion.Euler(0, 0, 0);
-                        }
-                        else if (v < 0)
-                        {
-                              transform.rotation = Quaternion.Euler(0, 0, 180);
-                        }
+                        // 현재 각도에서 목표 각도로 부드럽게 회전 (360도 회전 문제 해결)
+                        // MoveTowardsAngle은 0도와 360도 경계 문제를 자동으로 처리해줍니다.
+                        float currentZ = transform.eulerAngles.z;
+                        float nextZ = Mathf.MoveTowardsAngle(currentZ, targetZ, 410f * Time.deltaTime);
+
+                        transform.rotation = Quaternion.Euler(0f, 0f, nextZ);
                   }
-                  else if (isfloat == false)
+                  // 2. 물 밖일 때 (지상)
+                  else
                   {
-                        //Debug.Log("out");
-                        moveSpeed = 5;
+                        moveSpeed = 5f;
+
+                        // Y축 속도는 유지해야 중력이 작용함 (rigid.linearVelocity.y 사용)
+                        rigid.linearVelocity = new Vector2(h * moveSpeed, rigid.linearVelocity.y);
+
+                        // 회전 초기화
                         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                        rigid.linearVelocity = new Vector2(h * moveSpeed, rigid.linearVelocityY);
                         anim.SetBool("isSwim", false);
                   }
             }
-            
       }
       private void OnTriggerEnter2D(Collider2D collision)
       {

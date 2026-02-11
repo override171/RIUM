@@ -22,7 +22,7 @@ public class UXinterface : MonoBehaviour
             {
                   tutotext[uiNum].SetActive(true);
                   collobj = collision.gameObject;
-                  Invoke("Dest", 3f);
+                  Invoke("Dest", 2.3f);
             }
       }
       void Dest()
