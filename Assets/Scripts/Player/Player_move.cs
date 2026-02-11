@@ -1,8 +1,10 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+      int sp = 1;
       public BoxCollider2D[] box;
       Rigidbody2D rigid;
       Animator anim;
@@ -14,6 +16,10 @@ public class Player : MonoBehaviour
       public float moveSpeed;
       public bool isfloat = false;
       public bool isEnd = false;
+        float exx = 20f;
+      float dxx = 25f;
+      float maxx = 5f;
+
       bool canmove = true;
       bool ishitarea = false;
       float h;
@@ -154,15 +160,36 @@ public class Player : MonoBehaviour
 
                         transform.rotation = Quaternion.Euler(0f, 0f, nextZ);
                   }
-                  // 2. 물 밖일 때 (지상)
+
                   else
                   {
-                        moveSpeed = 5f;
+                        //moveSpeed = 5f;
+                        if(h > 0)
+                        {
+                              sp = 1;
+                              //StartCoroutine(speedUp());
+                        }
+                        else if(h < 0)
+                        {
+                              sp = -1;
+                              //StartCoroutine(speedUp());
+                        }
 
                         // Y축 속도는 유지해야 중력이 작용함 (rigid.linearVelocity.y 사용)
-                        rigid.linearVelocity = new Vector2(h * moveSpeed, rigid.linearVelocity.y);
+
 
                         // 회전 초기화
+                        float targersp = h * maxx;
+                        float currentsp = rigid.linearVelocityX;
+                        if(Mathf.Abs(h) > 0.01f)
+                        {
+                              currentsp = Mathf.MoveTowards(currentsp, targersp, exx * Time.fixedDeltaTime);
+                        }
+                        else
+                        {
+                              currentsp = Mathf.MoveTowards(currentsp, 0f, dxx * Time.fixedDeltaTime);
+                        }
+                        rigid.linearVelocity = new Vector2(currentsp, rigid.linearVelocity.y);
                         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                         anim.SetBool("isSwim", false);
                   }
